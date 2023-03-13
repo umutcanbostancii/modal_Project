@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_project/view_model/login_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -21,19 +21,42 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
-                controller: context.watch<LoginViewModel>().usernameController,
-                decoration: InputDecoration(labelText: "Email"),
+              LottieBuilder.network(
+                  "https://assets1.lottiefiles.com/packages/lf20_ktwnwv5m.json"),
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color.fromARGB(159, 214, 217, 246)),
+                child: TextField(
+                  controller:
+                      context.watch<LoginViewModel>().usernameController,
+                  decoration: const InputDecoration(labelText: "Email"),
+                ),
               ),
-              TextField(
-                controller: context.watch<LoginViewModel>().passwordController,
-                decoration: InputDecoration(labelText: "Password"),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color.fromARGB(159, 214, 217, 246)),
+                child: TextField(
+                    controller:
+                        context.watch<LoginViewModel>().passwordController,
+                    decoration: const InputDecoration(
+                      labelText: "Password",
+                    )),
+              ),
+              SizedBox(
+                height: 10,
               ),
               ElevatedButton(
                   onPressed: () {
                     context.read<LoginViewModel>().login();
                   },
-                  child: Text("Login"))
+                  child: const Text("Login"))
             ],
           ),
         ),
