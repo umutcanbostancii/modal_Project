@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:modal_project/pages/home/home.dart';
+import 'package:modal_project/pages/home/login/login_page.dart';
 import 'package:modal_project/pages/profile/profile_page.dart';
+import 'package:modal_project/view_model/login_view_model.dart';
 import 'package:modal_project/view_model/profile_view_model.dart';
 import 'package:provider/provider.dart';
 // ignore: unused_import
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ProfileViewModel())
+        ChangeNotifierProvider(create: (context) => ProfileViewModel()),
+        ChangeNotifierProvider(create: (context) => LoginViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
-        home: const HomeScreen(),
+        home: const LoginPage(),
       ),
     );
   }
