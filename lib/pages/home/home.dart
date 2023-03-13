@@ -43,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.8,
                       decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Colors.teal),
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.teal,
+                          ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -81,13 +84,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       i <= context.watch<ProfileViewModel>().totalPage;
                       i++)
                     context.watch<ProfileViewModel>().page == i
-                        ? Text(i.toString())
+                        ? Text(
+                            i.toString(),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          )
                         : TextButton(
                             onPressed: () {
                               context.read<ProfileViewModel>().SetPage(i);
                             },
-                            child: Text(
-                              i.toString(),
+                            child: Container(
+                              width: 20,
+                              child: Text(
+                                i.toString(),
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w600),
+                              ),
                             ),
                           ),
                 ],
