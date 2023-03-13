@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         MaterialPageRoute(builder: (context) => ProfilePage()));
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.8,
                       decoration: BoxDecoration(
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(100),
@@ -71,7 +71,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 );
               },
-            ))
+            )),
+            Container(
+              decoration: BoxDecoration(color: Colors.teal[100]),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (int i = 1;
+                      i <= context.watch<ProfileViewModel>().totalPage;
+                      i++)
+                    context.watch<ProfileViewModel>().page == i
+                        ? Text(i.toString())
+                        : TextButton(
+                            onPressed: () {
+                              context.read<ProfileViewModel>().SetPage(i);
+                            },
+                            child: Text(
+                              i.toString(),
+                            ),
+                          ),
+                ],
+              ),
+            )
           ],
         ),
       ),
